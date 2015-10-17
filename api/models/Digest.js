@@ -14,6 +14,9 @@ module.exports = {
             unique: true,
             autoIncrement: true
         },
+        text: {
+            type: 'TEXT'
+        },
         keywords: {
             collection: 'Keyword',
             via: 'digestId'

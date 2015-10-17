@@ -1,0 +1,81 @@
+var postBuilder = function ()
+{
+
+  this.post = "";
+
+  return this;
+};
+
+postBuilder.prototype.get = function ()
+{
+  return this.post;
+};
+
+postBuilder.prototype.newLine = function ()
+{
+  this.post += MarkdownService.newLine;
+  return this;
+};
+
+postBuilder.prototype.text = function ( string )
+{
+  this.post += string;
+  return this;
+};
+
+
+postBuilder.prototype.monthlyDigestList = function ( categories )
+{
+  var string = "";
+
+  for ( var category in categories )
+  {
+    string += "\n**" + category.toUpperCase() + "**" + MarkdownService.newLine + "\r\n";
+    var threads = categories[ category ];
+    for ( var i = 0; i < threads.length; i++ )
+    {
+      var thread = threads[ i ];
+
+      // NSWF tag if necessary
+      var over18 = "";
+      if ( thread.over_18 )
+      {
+        over18 = "`NSFW`";
+      }
+      // Create strings
+      var contentLink = "[" + MarkdownService.link( thread.link, thread.type ) + "]";
+      var commentLink = "[" + MarkdownService.link( thread.threadLink, thread.title ) + "]";
+      var subreddits = "";
+
+      // If thread is a dupe
+      if ( threads[ i ].subreddits.length > 1 )
+      {
+        for ( var x = 0; x < thread.subreddits.length; x++ )
+        {
+          // If first item, add no comma
+          subreddits += ((x === 0) ? '' : ', ') +
+                        MarkdownService.link(
+                          thread.subreddits[ x ].threadLink,
+                          MarkdownService.subreddit( thread.subreddits[ x ].name )
+                        );
+        }
+      }
+      else
+      {
+        subreddits = MarkdownService.link(
+          thread.subreddits[ 0 ].threadLink,
+          MarkdownService.subreddit( thread.subreddits[ 0 ].name )
+        );
+      }
+
+      // Glue together
+      string += "* " + over18 + contentLink + " " + commentLink + " on " + subreddits + "\r\n";
+    }
+  }
+
+  this.post += string;
+
+  return this;
+};
+
+module.exports = postBuilder;

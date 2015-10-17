@@ -9,14 +9,14 @@
 
             <div class="keywords">
                 <ul>
-                    <li ng-repeat="keyword in keywords">
+                    <li ng-repeat="keyword in digest.keywords">
 
                         <div class="input-field" style="display:inline-block">
                             <input id="keyword-{{$index}}" type="text" class="keywordTxt" value="{{keyword.value}}"
                                    ng-model="keyword.value"
                                    ng-keypress="$last && $event.keyCode == 13 ? createKeyword() : ''"
-                                    >
-                            <label for="keyword-{{$index}}">Keyword</label>
+                              >
+                            <label ng-class="{active: keyword.value != ''}" for="keyword-{{$index}}">Keyword</label>
                         </div>
                         <a ng-click="removeKeyword($index)">X</a>
                     </li>

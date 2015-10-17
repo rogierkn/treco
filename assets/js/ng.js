@@ -19,12 +19,12 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         })
 
         .state('collector-form.keywords', {
-            url: '/collector/keywords',
+            url: '/keywords',
             templateUrl: '/pages/collector-form-keywords.html'
         })
 
         .state('collector-form.search-parameters', {
-            url: '/collector/parameters',
+            url: '/parameters',
             templateUrl: '/pages/collector-form-search-parameters.html'
         })
 
