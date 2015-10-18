@@ -13,6 +13,8 @@ module.exports = {
       threads = this.duplicatesFilter(threads, filterRules);
     }
 
+    threads = this.customFilter(threads, filterRules.custom);
+
     return threads;
   },
 
@@ -94,6 +96,42 @@ module.exports = {
       if (ids.indexOf(threads[x].id) != -1) {
         threads.splice(x, 1);
       }
+    }
+
+    return threads;
+  },
+
+  customFilter: function (threads, custom) {
+    for (var i = 0; i < custom.length; i++) {
+      var rule = custom[i];
+      threads = threads.filter(function (thread) {
+
+        // If enabled
+        if (rule.title) {
+          // If exists in title
+          if (thread.title.toLowerCase().indexOf(rule.term) != -1) {
+            return false;
+          }
+        }
+
+        // If enabled
+        if (rule.body) {
+          // If exists in body
+          if (thread.body.toLowerCase().indexOf(rule.term) != -1) {
+            return false
+          }
+        }
+
+        // If enabled
+        if (rule.username) {
+          // If exists in username
+          if (thread.author.toLowerCase().indexOf(rule.term) != -1) {
+            return false;
+          }
+        }
+
+        return true;
+      });
     }
 
     return threads;

@@ -5,7 +5,7 @@ module.exports = {
 
   limit: function (amount) {
     try {
-      return parseInt(amount);
+      return Math.min(100, parseInt(amount));
     } catch (err) {
       console.log("Invalid amount for search limiting");
       return 25;
@@ -57,6 +57,14 @@ module.exports = {
   duplicateMerge: function (duplicateFilterMerge) {
     try {
       return Boolean(duplicateFilterMerge);
+    } catch (err) {
+      return true;
+    }
+  },
+
+  category: function (category) {
+    try {
+      return Boolean(category);
     } catch (err) {
       return true;
     }

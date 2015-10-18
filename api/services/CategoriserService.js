@@ -1,5 +1,5 @@
 module.exports = {
-  categorise: function (threads) {
+  categorise: function (threads, rules) {
     var collection = {
       pictures: [],
       gifs: [],
@@ -16,19 +16,29 @@ module.exports = {
 
       switch (thread.type) {
         case "PIC":
-          collection.pictures.push(thread);
+          if (ApiParamValidatorService.category(rules.pictures)) {
+            collection.pictures.push(thread);
+          }
           break;
         case "GIF":
-          collection.gifs.push(thread);
+          if (ApiParamValidatorService.category(rules.gifs)) {
+            collection.gifs.push(thread);
+          }
           break;
         case "VID":
-          collection.videos.push(thread);
+          if (ApiParamValidatorService.category(rules.videos)) {
+            collection.videos.push(thread);
+          }
           break;
         case "LINK":
-          collection.links.push(thread);
+          if (ApiParamValidatorService.category(rules.links)) {
+            collection.links.push(thread);
+          }
           break;
         case "SELF":
-          collection.self.push(thread);
+          if (ApiParamValidatorService.category(rules.self)) {
+            collection.self.push(thread);
+          }
           break;
       }
     }

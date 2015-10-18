@@ -6,16 +6,16 @@ app.controller( 'collectorFormController', [ '$scope', '$state', function ( $sco
 
 
   $scope.digest = {
-    keywords: [ { value: '' } ],
+    keywords: [{ value: 'netherlands' }, { value: 'amsterdam' }],
     searchParameters: {
-      resultsPerKeyword: 25,
+      resultsPerKeyword: 2,
       sortMethod: {
         value: 2,
-        options: [ 0, 1, 2, 3, 4 ]
+        options: ["relevance", "hot", "top", "new", "comments"]
       },
       timePeriod: {
         value: 2,
-        options: [ 0, 1, 2, 3, 4, 5 ]
+        options: ["hour", "day", "week", "month", "year", "all"]
       }
     },
     filterRules: {
@@ -24,8 +24,26 @@ app.controller( 'collectorFormController', [ '$scope', '$state', function ( $sco
       duplicates: {
         filter: true,
         merge: true,
-      }
-    }
+      },
+      custom: [
+        {term: 'european', title: true, body: true, username: true}
+      ]
+    },
+    categories: {
+      pictures: true,
+      gifs: true,
+      videos: true,
+      links: true,
+      self: true,
+    },
+    // Todo implement below
+    markup: {
+      categorise: false,
+      translations: {
+        on: 'on'
+      },
+      nonParticipatingLinks: true
+    },
   };
 
 
@@ -38,8 +56,11 @@ app.controller( 'collectorFormController', [ '$scope', '$state', function ( $sco
   // Keywords
   $scope.createKeyword = function ()
   {
-    $scope.digest.keywords.push( { value: '' } );
-    $scope.log( $scope.digest.keywords );
+    if($scope.digest.keywords.length == 10) {
+      Materialize.toast('You can only use 10 keywords', 2000);
+    } else {
+      $scope.digest.keywords.push( { value: '' } );
+    }
   };
   $scope.removeKeyword = function ( index )
   {

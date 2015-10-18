@@ -13,14 +13,14 @@ module.exports = {
       {
         keywords: [{ value: 'netherlands' }, { value: 'amsterdam' }],
         searchParameters: {
-          resultsPerKeyword: 25,
+          resultsPerKeyword: 2,
           sortMethod: {
             value: 2,
-            options: [0, 1, 2, 3, 4]
+            options: ["relevance", "hot", "top", "new", "comments"]
           },
           timePeriod: {
             value: 2,
-            options: [0, 1, 2, 3, 4, 5]
+            options: ["hour", "day", "week", "month", "year", "all"]
           }
         },
         filterRules: {
@@ -29,7 +29,10 @@ module.exports = {
           duplicates: {
             filter: true,
             merge: true,
-          }
+          },
+          custom: [
+            {term: 'european', title: true, body: true, username: true}
+          ]
         },
         categories: {
           pictures: true,
@@ -40,11 +43,11 @@ module.exports = {
         },
         // Todo implement below
         markup: {
-          categorise: true,
+          categorise: false,
           translations: {
-            found: 'found',
             on: 'on'
           },
+          nonParticipatingLinks: true
         },
       }
     );

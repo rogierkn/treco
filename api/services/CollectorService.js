@@ -7,6 +7,9 @@ module.exports = {
 
     var keywordsCount = parameters.keywords.length;
 
+    // Limit to max 10 keywords
+    keywordsCount = Math.min(keywordsCount, 10);
+
     var threads = [];
     var counter = 0;
 

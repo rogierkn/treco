@@ -32,3 +32,13 @@ a {
   border-bottom: 1px solid #03A9F4;
   box-shadow: 0 1px 0 0 #03A9F4;
 }
+.input-field .prefix.active {
+  color: #03A9F4;
+}
+.deleteIconKeyword {
+  font-size: 1.3rem !important;
+  cursor: pointer;
+}
+.deleteIconKeyword:hover {
+  color: #03A9F4;
+}

@@ -2,9 +2,16 @@ module.exports = {
   newLine: "&nbsp;  \n",
   space: "&nbsp;",
 
-  link: function (link, text) {
+  link: function (link, text, isNp) {
+
+    if(isNp != undefined && isNp) {
+      link = "https://np.reddit.com" + link;
+    } else {
+      link = "https://reddit.com" + link;
+    }
     return '[' + text + '](' + link + ' )';
   },
+
 
   list: function (items) {
     var string = "\n";

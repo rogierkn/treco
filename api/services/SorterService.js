@@ -18,6 +18,7 @@ module.exports = {
         over_18: thread.over_18,
         commentCount: thread.num_comments,
         isSelf: thread.is_self,
+        body: thread.selftext,
         threadLink: thread.permalink,
         link: thread.url,
         title: thread.title
