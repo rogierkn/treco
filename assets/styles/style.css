@@ -2764,6 +2764,9 @@ Copyright (c) 2014 Daniel Eden
 .content {
   margin-top: 25%;
 }
+#collectorForm {
+  position: relative;
+}
 .keywords {
   margin: 45px 0 30px 15px;
   padding-left: 15px;
@@ -2777,7 +2780,7 @@ Copyright (c) 2014 Daniel Eden
 }
 @keyframes keywordEnter {
   0% {
-    max-height: 0px;
+    max-height: 0;
     opacity: 0;
     -webkit-transform: translate3d(-100%, 0, 0);
     -ms-transform: translate3d(-100%, 0, 0);
@@ -2800,7 +2803,7 @@ Copyright (c) 2014 Daniel Eden
     transform: none;
   }
   100% {
-    max-height: 0px;
+    max-height: 0;
     opacity: 0;
     -webkit-transform: translate3d(-100%, 0, 0);
     -ms-transform: translate3d(-100%, 0, 0);
@@ -2809,6 +2812,7 @@ Copyright (c) 2014 Daniel Eden
 }
 #collector-form-views {
   position: absolute;
+  width: 100%;
 }
 #collector-form-views.ng-enter,
 #collector-form-views.ng-leave {
