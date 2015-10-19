@@ -4,10 +4,10 @@ html, body, .fullheight {
   min-height: 100% !important;
   height: 100%;
 }
+
 body {
   color: rgba(0, 0, 0, 0.87);
 }
-
 
 .hidden {
   display: none;
@@ -22,29 +22,50 @@ a {
   color: @blue;
 }
 
-
 .blue-text {
   color: @blue;
 }
+
 .blue {
   background-color: @blue;
 }
 
-/* label focus color */
-.input-field input[type=text]:focus + label {
-  color: @blue;
-}
-/* label underline focus color */
-.input-field input[type=text]:focus {
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid @blue;
   box-shadow: 0 1px 0 0 @blue;
+}
+
+input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label, input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label, input[type=date]:focus:not([readonly]) + label, input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label, input[type=search]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: @blue;
+}
+
+[type="radio"].with-gap:checked+label:before {
+  border-radius: 50%;
+  border: 2px solid @blue;
+}
+
+[type="radio"].with-gap:checked+label:before {
+  border-radius: 50%;
+  border: 2px solid @blue;
+}
+[type="radio"].with-gap:checked+label:after {
+  border-radius: 50%;
+  border: 2px solid @blue;
+  background-color: @blue;
+  z-index: 0;
+  -webkit-transform: scale(.5);
+  -moz-transform: scale(.5);
+  -ms-transform: scale(.5);
+  -o-transform: scale(.5);
+  transform: scale(.5);
 }
 
 .input-field .prefix.active {
   color: @blue;
 }
+
 .deleteIconKeyword {
-  font-size:1.3rem !important;
+  font-size: 1.3rem !important;
   cursor: pointer;
   &:hover {
     color: @blue;

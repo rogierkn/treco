@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="card-content">
+
+        <span class="card-title grey-text text-darken-4">Search parameters</span>
+
+        <div class="grey-text text-darken-4">
+
+            <div class="row">
+                <div class="col s8 valign-wrapper" style="min-height:76px;">
+                    <p class="valign">How many results should be fetched per keyword?</p>
+
+                </div>
+                <div class="col s4">
+                    <div class="input-field">
+                        <input id="resultsPerKeyword" type="number"
+                               min="1" max="100"
+                               value="digest.searchParameters.resultsPerKeyword"
+                               ng-model="digest.searchParameters.resultsPerKeyword"
+                                >
+                        <label ng-class="{active: digest.searchParameters.resultsPerKeyword !== ''}"
+                               for="resultsPerKeyword">Amount</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s8 valign-wrapper" style="min-height:76px">
+                    <p class="valign">How should the results be fetched?</p>
+                </div>
+
+                <div class="col s4">
+                    <label>Sort method</label>
+                    <p ng-repeat="method in digest.searchParameters.sortMethod.options">
+                        <input name="sortMethod" type="radio" id="sort-{{$index}}" class="with-gap"
+                               ng-model="digest.searchParameters.sortMethod.value"
+                               value="{{$index}}"
+                               ng-checked="$index == digest.searchParameters.sortMethod.value"
+                                />
+                        <label for="sort-{{$index}}">{{method | capitalize}}</label>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col s8 valign-wrapper" style="min-height:76px">
+                    <p class="valign">From what time period should the results be fetched?</p>
+                </div>
+
+                <div class="col s4">
+                    <label>Time period</label>
+                    <p ng-repeat="period in digest.searchParameters.timePeriod.options">
+                        <input name="timePeriod" type="radio" id="time-{{$index}}" class="with-gap"
+                               ng-model="digest.searchParameters.timePeriod.value"
+                               value="{{$index}}"
+                               ng-checked="$index == digest.searchParameters.timePeriod.value"
+                                />
+                        <label for="time-{{$index}}">{{period | capitalize}}</label>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <br/>
+    </div>
+
+    <div class="card-action">
+        <a class="btn-flat" ng-class="{'blue-text waves-effect': searchParametersCanContinue(), 'disabled grey-text': !searchParametersCanContinue() }" ng-click="searchParametersContinue()">Continue</a>
+        <a class="btn-flat grey-text darken-2" ui-sref="collector-form.keywords">Back</a>
+    </div>
+</div>
