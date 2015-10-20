@@ -31,7 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             templateUrl: '/pages/collector-form/keywords.html'
         })
 
-        .state('collector-form.search-parameters', {
+        .state('collector-form.searchParameters', {
             url: '/parameters',
             templateUrl: '/pages/collector-form/search-parameters.html'
         })
@@ -39,6 +39,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('collector-form.filterRules', {
             url: '/filters',
             templateUrl: '/pages/collector-form/filters.html'
+        })
+
+        .state('collector-form.customFilters', {
+            url: '/filters/custom',
+            templateUrl: '/pages/collector-form/custom-filters.html'
         })
 
     ;

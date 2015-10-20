@@ -2767,15 +2767,23 @@ Copyright (c) 2014 Daniel Eden
 #collectorForm {
   position: relative;
 }
-.keywords {
-  margin: 45px 0 30px 15px;
+.keywords,
+.filters {
+  margin: 45px 0 30px 0px;
   min-height: 10px;
   padding-left: 15px;
 }
-.repeat-keyword.ng-enter {
+.keywords ul li,
+.filters ul li {
+  display: block;
+  width: 100%;
+}
+.repeat-keyword.ng-enter,
+.repeat-filter.ng-enter {
   animation: keywordEnter ease-in-out 1s;
 }
-.repeat-keyword.ng-leave {
+.repeat-keyword.ng-leave,
+.repeat-filter.ng-leave {
   animation: keywordLeave ease-in-out 1s;
 }
 @keyframes keywordEnter {
@@ -2787,7 +2795,7 @@ Copyright (c) 2014 Daniel Eden
     transform: translate3d(-100%, 0, 0);
   }
   100% {
-    max-height: 76px;
+    max-height: 100px;
     opacity: 1;
     -webkit-transform: none;
     -ms-transform: none;
@@ -2796,7 +2804,7 @@ Copyright (c) 2014 Daniel Eden
 }
 @keyframes keywordLeave {
   0% {
-    max-height: 76px;
+    max-height: 100px;
     opacity: 1;
     -webkit-transform: none;
     -ms-transform: none;
@@ -2823,9 +2831,9 @@ Copyright (c) 2014 Daniel Eden
 }
 #collector-form-views.ng-enter {
   opacity: 0;
-  -webkit-transform: translate3d(-100%, 0, 0);
-  -ms-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
 }
 #collector-form-views.ng-enter-active {
   opacity: 1;
@@ -2841,7 +2849,7 @@ Copyright (c) 2014 Daniel Eden
 }
 #collector-form-views.ng-leave-active {
   opacity: 0;
-  -webkit-transform: translate3d(100%, 0, 0);
-  -ms-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }

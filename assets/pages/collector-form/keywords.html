@@ -13,7 +13,7 @@
 
 
               <div class="input-field" style="display:inline-block">
-                <i ng-class="{active: keyword.value != ''}" class="material-icons prefix deleteIconKeyword" ng-click="removeKeyword($index)">delete</i>
+                <i ng-class="{active: keyword.value != ''}" class="material-icons prefix deleteIcon" ng-click="removeKeyword($index)">delete</i>
                 <input id="keyword-{{$index}}" type="text" value="{{keyword.value}}"
                        ng-model="keyword.value"
                        ng-keypress="$last && $event.keyCode == 13 ? createKeyword() : ''"

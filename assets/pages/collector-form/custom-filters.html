@@ -1,0 +1,67 @@
+<div class="card">
+    <div class="card-content">
+
+        <span class="card-title grey-text text-darken-4">Custom filters</span>
+
+        <div class="grey-text text-darken-4">
+            Specify the terms you would like to filter on and where to apply the filter
+            <br/>
+
+            <div class="filters">
+                <ul>
+                    <li ng-repeat="filter in digest.filterRules.custom" class="repeat-filter">
+
+
+                        <div class="input-field" style="display:inline-block">
+                            <i ng-class="{active: filter.term != ''}" class="material-icons prefix deleteIcon"
+                               ng-click="removeCustomFilter($index)">delete</i>
+                            <input id="filter-{{$index}}" type="text" value="{{filter.term}}"
+                                   ng-model="filter.term"
+                                   ng-keypress="$last && $event.keyCode == 13 ? createCustomFilter() : ''"
+                                    >
+                            <label ng-class="{active: filter.term != ''}" for="filter-{{$index}}">Term</label>
+                        </div>
+
+                        &nbsp;
+                        &nbsp;
+
+                        <input type="checkbox" class="filled-in" id="filter-{{$index}}-title"
+                               ng-model="filter.title"/>
+                        <label for="filter-{{$index}}-title">Title</label>
+
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+
+                        <input type="checkbox" class="filled-in" id="filter-{{$index}}-body"
+                               ng-model="filter.body"/>
+                        <label for="filter-{{$index}}-body">Body</label>
+
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+
+                        <input type="checkbox" class="filled-in" id="filter-{{$index}}-username"
+                               ng-model="filter.username"/>
+                        <label for="filter-{{$index}}-username">Author</label>
+
+
+                    </li>
+
+                </ul>
+
+            </div>
+            <a ng-click="createCustomFilter()">Add filter</a>
+
+        </div>
+
+        <br/>
+    </div>
+
+    <div class="card-action">
+        <a class="btn-flat waves-effect"
+           ng-class="{'blue-text waves-effect': customFiltersCanContinue(), 'disabled grey-text': !customFiltersCanContinue() }"
+           ng-click="customFiltersContinue()">Continue</a>
+        <a class="btn-flat grey-text darken-2  waves-effect" ui-sref="collector-form.filterRules">Back</a>
+    </div>
+</div>
