@@ -7,14 +7,13 @@
 
             <div class="row">
                 <div class="col s8 valign-wrapper" style="min-height:76px;">
-                    <p class="valign">How many upvotes should a thread have?</p>
+                    <p class="valign">How many upvotes should a thread at least have?</p>
 
                 </div>
                 <div class="col s4">
                     <div class="input-field">
                         <input id="upvotesCount" type="number"
                                min="0" max="50000"
-                               value="digest.filterRules.upvotesCount"
                                ng-model="digest.filterRules.upvotesCount"
                                 >
                         <label ng-class="{active: digest.filterRules.upvotesCount !== ''}"
@@ -25,14 +24,13 @@
 
             <div class="row">
                 <div class="col s8 valign-wrapper" style="min-height:76px;">
-                    <p class="valign">How many subscribers should the subreddit of a thread have?</p>
+                    <p class="valign">How many subscribers should the subreddit of a thread at least have?</p>
 
                 </div>
                 <div class="col s4">
                     <div class="input-field">
                         <input id="subscriberCount" type="number"
                                min="0" max="30000000"
-                               value="digest.filterRules.subscriberCount"
                                ng-model="digest.filterRules.subscriberCount"
                                 >
                         <label ng-class="{active: digest.filterRules.subscriberCount !== ''}"
@@ -65,7 +63,7 @@
                 <div class="col s4">
                     <div class="switch">
                         <label>
-                            Nothing
+                            No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="mergeSwitch" type="checkbox" ng-model="digest.filterRules.duplicates.merge"
                                    ng-disabled="!digest.filterRules.duplicates.filter">
                             <span class="lever"></span>

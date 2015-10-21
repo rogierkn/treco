@@ -81,6 +81,10 @@ input[type=checkbox]:checked + .lever {
 .input-field .prefix.active {
   color: #2196f3;
 }
+[type="checkbox"].filled-in:checked + label:after {
+  border: 2px solid #2196f3;
+  background-color: #2196f3;
+}
 .deleteIcon {
   font-size: 1.3rem !important;
   cursor: pointer;

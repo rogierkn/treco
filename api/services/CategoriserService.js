@@ -16,27 +16,27 @@ module.exports = {
 
       switch (thread.type) {
         case "PIC":
-          if (ApiParamValidatorService.category(rules.pictures)) {
+          if (ApiParamValidatorService.category(rules.pictures.enabled)) {
             collection.pictures.push(thread);
           }
           break;
         case "GIF":
-          if (ApiParamValidatorService.category(rules.gifs)) {
+          if (ApiParamValidatorService.category(rules.gifs.enabled)) {
             collection.gifs.push(thread);
           }
           break;
         case "VID":
-          if (ApiParamValidatorService.category(rules.videos)) {
+          if (ApiParamValidatorService.category(rules.videos.enabled)) {
             collection.videos.push(thread);
           }
           break;
         case "LINK":
-          if (ApiParamValidatorService.category(rules.links)) {
+          if (ApiParamValidatorService.category(rules.links.enabled)) {
             collection.links.push(thread);
           }
           break;
         case "SELF":
-          if (ApiParamValidatorService.category(rules.self)) {
+          if (ApiParamValidatorService.category(rules.self.enabled)) {
             collection.self.push(thread);
           }
           break;

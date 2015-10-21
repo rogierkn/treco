@@ -1,8 +1,9 @@
 app.controller ('collectorFormController', ['$scope', '$state', function ($scope, $state) {
 
-
-    //$state.go('collector');
-
+    $scope.searchStatus = {
+        text: 'Submitting to server...',
+        subText: ''
+    };
 
     $scope.digest = {
         keywords: [{ value: 'netherlands' }, { value: 'amsterdam' }],
@@ -22,32 +23,75 @@ app.controller ('collectorFormController', ['$scope', '$state', function ($scope
             subscriberCount: 50000,
             duplicates: {
                 filter: true,
-                merge: true,
+                merge: true
             },
             custom: [
                 { term: 'european', title: true, body: true, username: true }
             ]
         },
         categories: {
-            pictures: true,
-            gifs: true,
-            videos: true,
-            links: true,
-            self: true,
+            pictures: { enabled: true },
+            gifs: { enabled: true },
+            videos: { enabled: true },
+            links: { enabled: true },
+            self: { enabled: true }
         },
-        // Todo implement below
         markup: {
-            categorise: false,
+            categorise: true,
+            nonParticipatingLinks: true,
             translations: {
                 on: 'on'
+            }
+
+        }
+    };
+
+    $scope.digestReset = function() {
+        $scope.digest = {
+            keywords: [{ value: '' }],
+            searchParameters: {
+                resultsPerKeyword: 25,
+                sortMethod: {
+                    value: 2,
+                    options: ["relevance", "hot", "top", "new", "comments"]
+                },
+                timePeriod: {
+                    value: 2,
+                    options: ["hour", "day", "week", "month", "year", "all"]
+                }
             },
-            nonParticipatingLinks: true
-        },
+            filterRules: {
+                upvotesCount: 500,
+                subscriberCount: 50000,
+                duplicates: {
+                    filter: true,
+                    merge: true
+                },
+                custom: [
+                    { term: '', title: true, body: true, username: true }
+                ]
+            },
+            categories: {
+                pictures: { enabled: true },
+                gifs: { enabled: true },
+                videos: { enabled: true },
+                links: { enabled: true },
+                self: { enabled: true }
+            },
+            markup: {
+                categorise: true,
+                nonParticipatingLinks: true,
+                translations: {
+                    on: 'on'
+                }
+            }
+        }
     };
 
 
     $scope.log = function () {
-        console.log ($scope.digest.filterRules.custom);
+        console.log ($scope.digest.categories);
+        console.log ($scope.categoriesCanContinue ());
     };
 
 
@@ -110,26 +154,26 @@ app.controller ('collectorFormController', ['$scope', '$state', function ($scope
 
 
     // Filters
-    $scope.filtersCanContinue = function() {
-        if($scope.digest.filterRules.upvotesCount < 0 || $scope.digest.filterRules.upvotesCount > 50000) {
+    $scope.filtersCanContinue = function () {
+        if ($scope.digest.filterRules.upvotesCount < 0 || $scope.digest.filterRules.upvotesCount > 50000) {
             return false;
         }
 
-        if($scope.digest.filterRules.subscriberCount < 0 || $scope.digest.filterRules.subscriberCount > 30000000) {
+        if ($scope.digest.filterRules.subscriberCount < 0 || $scope.digest.filterRules.subscriberCount > 30000000) {
             return false;
         }
 
-        if(!$scope.digest.filterRules.duplicates.filter && $scope.digest.filterRules.duplicates.merge) {
+        if (!$scope.digest.filterRules.duplicates.filter && $scope.digest.filterRules.duplicates.merge) {
             $scope.digest.filterRules.duplicates.merge = false;
         }
 
         return true;
     };
-    $scope.filtersContinue = function() {
-        if($scope.filtersCanContinue()) {
-            $state.go('collector-form.customFilters');
+    $scope.filtersContinue    = function () {
+        if ($scope.filtersCanContinue ()) {
+            $state.go ('collector-form.customFilters');
         }
-    }
+    };
     // End Filters
 
 
@@ -141,12 +185,12 @@ app.controller ('collectorFormController', ['$scope', '$state', function ($scope
             $scope.digest.filterRules.custom.push ({ term: '', title: true, body: true, username: true });
         }
     };
-    $scope.removeCustomFilter = function (index) {
+    $scope.removeCustomFilter       = function (index) {
         $scope.digest.filterRules.custom.splice (index, 1);
     };
     $scope.customFiltersCanContinue = function () {
         if ($scope.digest.filterRules.custom.length == 0) {
-            return false;
+            return true;
         }
 
         for (var i = 0; i < $scope.digest.filterRules.custom.length; i++) {
@@ -158,10 +202,38 @@ app.controller ('collectorFormController', ['$scope', '$state', function ($scope
     };
     $scope.customFiltersContinue    = function () {
         if ($scope.customFiltersCanContinue ()) {
-            throw "Implement filter continue";
-            //$state.go ('collector-form.search-parameters');
+            $state.go ('collector-form.categories');
         }
     };
     // End Custom Filters
+
+    // Categories
+    $scope.categoriesCanContinue = function () {
+        for (var cat in $scope.digest.categories) {
+            if ($scope.digest.categories[cat].enabled === true) {
+                return true;
+            }
+        }
+        return false;
+    };
+    $scope.categoriesContinue    = function () {
+        if ($scope.customFiltersCanContinue ()) {
+            $state.go ('collector-form.markup');
+        }
+    };
+    // End Categories
+
+    // Markup
+    $scope.startSubmit = function() {
+        io.socket.post ('/reddit/startSearch', $scope.digest);
+        $state.go('collector-form.status');
+    };
+    // End Markup
+
+
+    io.socket.on('searchUpdate', function(data) {
+        $scope.searchStatus = data;
+        $scope.$apply();
+    });
 
 }]);

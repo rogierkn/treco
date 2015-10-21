@@ -46,6 +46,21 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             templateUrl: '/pages/collector-form/custom-filters.html'
         })
 
+        .state('collector-form.categories', {
+            url:  '/categories',
+            templateUrl: '/pages/collector-form/categories.html'
+        })
+
+        .state('collector-form.markup', {
+            url: '/markup',
+            templateUrl: '/pages/collector-form/markup.html'
+        })
+
+        .state('collector-form.status', {
+            url: '/status',
+            templateUrl: '/pages/collector-form/status.html'
+        });
+
     ;
 
 

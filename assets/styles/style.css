@@ -2768,13 +2768,15 @@ Copyright (c) 2014 Daniel Eden
   position: relative;
 }
 .keywords,
-.filters {
-  margin: 45px 0 30px 0px;
+.filters,
+.categories {
+  margin: 45px 0 30px 0;
   min-height: 10px;
   padding-left: 15px;
 }
 .keywords ul li,
-.filters ul li {
+.filters ul li,
+.categories ul li {
   display: block;
   width: 100%;
 }
@@ -2852,4 +2854,7 @@ Copyright (c) 2014 Daniel Eden
   -webkit-transform: translate3d(-100%, 0, 0);
   -ms-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
+}
+.translationExample {
+  font-size: 0.7em;
 }
