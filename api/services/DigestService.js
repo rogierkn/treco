@@ -33,7 +33,7 @@ module.exports = {
             postBuilder.monthlyDigestList (apiThreads, parameters.markup);
         }
 
-        postBuilder.newLine().newLine().text("Treco for reddit, built by /u/jesuisroger");
+        postBuilder.newLine().newLine().text(MarkdownService.link("http://ikwistgeendomeinnaam.eu/" ,"Treco for reddit") + ", built by /u/jesuisroger");
 
 
 

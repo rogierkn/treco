@@ -92,11 +92,7 @@ app.controller ('collectorFormController', ['$scope', '$state', '$sce', function
         }
     };
 
-
-    $scope.log = function () {
-        console.log ($scope.digest.categories);
-        console.log ($scope.categoriesCanContinue ());
-    };
+    $scope.digestReset();
 
 
     // Keywords
