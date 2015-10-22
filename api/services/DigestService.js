@@ -19,15 +19,12 @@ module.exports = {
 
         // Only categorise if user wants it
         if (parameters.markup.categorise) {
-
             apiThreads = CategoriserService.categorise (apiThreads, parameters.categories);
         }
 
         var postBuilder = new PostBuilderService ();
-        postBuilder
-            .text ("Last month's top posts mentioning the Netherlands in some way.").newLine ()
-            .text ("This is an automated post, therefore not all entries might be correct. Contact /u/jesuisroger with any complaints or suggestions.").newLine ()
-            .newLine ();
+        postBuilder.text("Collection of threads").newLine().newLine();
+
 
         if (parameters.markup.categorise) {
             postBuilder.monthlyDigestListCategorised (apiThreads, parameters.markup);
@@ -35,7 +32,15 @@ module.exports = {
             postBuilder.monthlyDigestList (apiThreads, parameters.markup);
         }
 
-        console.log (postBuilder.get ());
+        postBuilder.newLine().newLine().text("Treco for reddit, built by /u/jesuisroger");
+
+
+
+
+
+        req.socket.emit('searchFinished', {
+            markdown: postBuilder.get()
+        });
 
 
     }

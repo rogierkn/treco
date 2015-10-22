@@ -59,7 +59,12 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('collector-form.status', {
             url: '/status',
             templateUrl: '/pages/collector-form/status.html'
-        });
+        })
+
+        .state('collector-form.results', {
+            url: '/results',
+            templateUrl: '/pages/collector-form/results.html'
+        })
 
     ;
 

@@ -1,8 +1,12 @@
-app.controller ('collectorFormController', ['$scope', '$state', function ($scope, $state) {
+app.controller ('collectorFormController', ['$scope', '$state', '$sce', function ($scope, $state) {
 
     $scope.searchStatus = {
         text: 'Submitting to server...',
         subText: ''
+    };
+
+    $scope.results = {
+        markdown: ''
     };
 
     $scope.digest = {
@@ -235,5 +239,19 @@ app.controller ('collectorFormController', ['$scope', '$state', function ($scope
         $scope.searchStatus = data;
         $scope.$apply();
     });
+    io.socket.on('searchFinished', function(data) {
+        $scope.results = data;
+        $scope.$apply();
+        $state.go('collector-form.results');
+
+        new Clipboard('#copyBtn', {
+            text: function(trigger) {
+                Materialize.toast('Copied to clipboard!', 1500);
+                return $scope.results.markdown;
+            }
+        });
+    });
+
+
 
 }]);
