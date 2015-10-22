@@ -50,7 +50,7 @@ app.controller ('collectorFormController', ['$scope', '$state', '$sce', function
         }
     };
 
-    $scope.digestReset = function() {
+    $scope.digestReset = function () {
         $scope.digest = {
             keywords: [{ value: '' }],
             searchParameters: {
@@ -228,30 +228,41 @@ app.controller ('collectorFormController', ['$scope', '$state', '$sce', function
     // End Categories
 
     // Markup
-    $scope.startSubmit = function() {
+    $scope.startSubmit = function () {
         io.socket.post ('/reddit/startSearch', $scope.digest);
-        $state.go('collector-form.status');
+        $state.go ('collector-form.status');
     };
     // End Markup
 
 
-    io.socket.on('searchUpdate', function(data) {
+    var clipboard;
+    var hasListener = false;
+    io.socket.on ('searchUpdate', function (data) {
         $scope.searchStatus = data;
-        $scope.$apply();
+        $scope.$apply ();
     });
-    io.socket.on('searchFinished', function(data) {
+    io.socket.on ('searchFinished', function (data) {
         $scope.results = data;
-        $scope.$apply();
-        $state.go('collector-form.results');
+        $scope.$apply ();
+        $state.go ('collector-form.results');
 
-        new Clipboard('#copyBtn', {
-            text: function(trigger) {
-                Materialize.toast('Copied to clipboard!', 1500);
-                return $scope.results.markdown;
-            }
-        });
+
+        var clipboard = new Clipboard ('#copyBtn');
+
+        if(!hasListener) {
+            hasListener = true;
+            clipboard.on ('success', function (e) {
+                Materialize.toast ('Copied to clipboard!', 1500);
+            });
+
+            clipboard.on ('error', function (e) {
+                Materialize.toast ('Ctrl + C to copy!', 3000);
+            });
+
+        }
+
+
     });
-
 
 
 }]);

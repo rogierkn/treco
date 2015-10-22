@@ -59,7 +59,7 @@ postBuilder.prototype.monthlyDigestList = function (threads, markup) {
         }
 
         // Glue together
-        string += "* " + over18 + contentLink + " " + commentLink + " " + markup.translations.on + " " + subreddits + "\r\n";
+        string += "* " + over18 + contentLink + " " + commentLink + " " + markup.translations.on + " " + subreddits + "  \r\n";
     }
 
 
@@ -69,7 +69,7 @@ postBuilder.prototype.monthlyDigestList = function (threads, markup) {
 };
 
 postBuilder.prototype.monthlyDigestListCategorised = function (categories, markup) {
-    var string = "";
+    var string = "\r\n";
 
     for (var category in categories) {
 
@@ -114,7 +114,7 @@ postBuilder.prototype.monthlyDigestListCategorised = function (categories, marku
             }
 
             // Glue together
-            string += "* " + over18 + contentLink + " " + commentLink + " " + markup.translations.on + " " + subreddits + "\r\n";
+            string += "* " + over18 + contentLink + " " + commentLink + " " + markup.translations.on + " " + subreddits + "  \r\n";
         }
     }
 

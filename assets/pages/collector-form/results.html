@@ -9,12 +9,16 @@
 
             <div class="row" style="padding-top:50px; padding-bottom:50px;">
                 <div class="col s12 text-center">
-                    <a id="copyBtn" class="btn blue waves-effect">Copy markdown</a>
+                    <a id="copyBtn" class="btn blue waves-effect" data-clipboard-target="#markdownCode"
+                            >Copy markdown</a>
                     <br/>
                     <br/>
                     And instantly paste it on reddit
                 </div>
             </div>
+
+            <textarea style="position:absolute; left:-9999px; top:-9999px;"
+                      id="markdownCode">{{ results.markdown }}</textarea>
 
 
         </div>

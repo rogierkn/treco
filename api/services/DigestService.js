@@ -23,7 +23,8 @@ module.exports = {
         }
 
         var postBuilder = new PostBuilderService ();
-        postBuilder.text("Collection of threads").newLine().newLine();
+        postBuilder
+            .text("Collection of threads").newLine().newLine();
 
 
         if (parameters.markup.categorise) {
@@ -40,6 +41,14 @@ module.exports = {
 
         req.socket.emit('searchFinished', {
             markdown: postBuilder.get()
+        });
+
+        Digest.create().exec(function () {
+            Digest.count().exec(function (err, count) {
+                sails.sockets.blast("digestCount", {
+                    count: count
+                });
+            });
         });
 
 
