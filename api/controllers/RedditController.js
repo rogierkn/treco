@@ -8,31 +8,29 @@
 module.exports = {
 
 
-  digestCount: function (req, res) {
-        Digest.count().exec(function (error, count) {
-      res.json({
-        count: count
-      });
-    });
-  },
-
-  digestIncrease: function (req, res) {
-    console.log("DigestIncrease websock");
-    Digest.create().exec(function (err, created) {
-      Digest.count().exec(function (err, count) {
-        sails.sockets.blast("digestCount", {
-          count: count
+    digestCount: function (req, res) {
+        Digest.count ().exec (function (error, count) {
+            req.socket.emit ('digestCount', {
+                count: count
+            });
         });
-      });
-    });
-  },
+    },
+
+    digestIncrease: function (req, res) {
+        console.log ("DigestIncrease websock");
+        Digest.create ().exec (function (err, created) {
+            Digest.count ().exec (function (err, count) {
+                sails.sockets.blast ("digestCount", {
+                    count: count
+                });
+            });
+        });
+    },
 
 
-    startSearch: function(req, res) {
-        DigestService.start(req);
+    startSearch: function (req, res) {
+        DigestService.start (req);
     }
-
-
 
 
 };
