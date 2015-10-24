@@ -15,13 +15,13 @@ body {
 }
 a {
   cursor: pointer;
-  color: #2196f3;
+  color: #2196F3;
 }
 .blue-text {
-  color: #2196f3;
+  color: #2196F3;
 }
 .blue {
-  background-color: #2196f3;
+  background-color: #2196F3;
 }
 input[type=text]:focus:not([readonly]),
 input[type=password]:focus:not([readonly]),
@@ -34,8 +34,8 @@ input[type=tel]:focus:not([readonly]),
 input[type=number]:focus:not([readonly]),
 input[type=search]:focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #2196f3;
-  box-shadow: 0 1px 0 0 #2196f3;
+  border-bottom: 1px solid #2196F3;
+  box-shadow: 0 1px 0 0 #2196F3;
 }
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -48,20 +48,20 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #2196f3;
+  color: #2196F3;
 }
 [type="radio"].with-gap:checked + label:before {
   border-radius: 50%;
-  border: 2px solid #2196f3;
+  border: 2px solid #2196F3;
 }
 [type="radio"].with-gap:checked + label:before {
   border-radius: 50%;
-  border: 2px solid #2196f3;
+  border: 2px solid #2196F3;
 }
 [type="radio"].with-gap:checked + label:after {
   border-radius: 50%;
-  border: 2px solid #2196f3;
-  background-color: #2196f3;
+  border: 2px solid #2196F3;
+  background-color: #2196F3;
   z-index: 0;
   -webkit-transform: scale(0.5);
   -moz-transform: scale(0.5);
@@ -70,27 +70,27 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
   transform: scale(0.5);
 }
 .switch label input[type=checkbox]:checked + .lever:after {
-  background-color: #2196f3;
+  background-color: #2196F3;
 }
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #2196f3;
+  background-color: #2196F3;
 }
 input[type=checkbox]:checked + .lever {
-  background-color: #2196f3;
+  background-color: #2196F3;
 }
 .input-field .prefix.active {
-  color: #2196f3;
+  color: #2196F3;
 }
 [type="checkbox"].filled-in:checked + label:after {
-  border: 2px solid #2196f3;
-  background-color: #2196f3;
+  border: 2px solid #2196F3;
+  background-color: #2196F3;
 }
 .deleteIcon {
   font-size: 1.3rem !important;
   cursor: pointer;
 }
 .deleteIcon:hover {
-  color: #2196f3;
+  color: #2196F3;
 }
 .hasTooltip {
   border-bottom: 1px dotted #000;

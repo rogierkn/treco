@@ -16,17 +16,6 @@ module.exports = {
         });
     },
 
-    digestIncrease: function (req, res) {
-        console.log ("DigestIncrease websock");
-        Digest.create ().exec (function (err, created) {
-            Digest.count ().exec (function (err, count) {
-                sails.sockets.blast ("digestCount", {
-                    count: count
-                });
-            });
-        });
-    },
-
 
     startSearch: function (req, res) {
         DigestService.start (req);

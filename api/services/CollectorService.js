@@ -1,6 +1,6 @@
 module.exports = {
 
-    collect: function (req, digestService) {
+    collect: function (req, callback) {
 
         var parameters = req.body;
 
@@ -10,14 +10,14 @@ module.exports = {
         // Limit to max 10 keywords
         keywordsCount = Math.min (keywordsCount, 10);
 
+        sails.log(req.ip + "| keywords: [" + parameters.keywords.join(', ') + "]");
+
         var threads = [];
         var counter = 0;
 
-        req.socket.emit ('searchUpdate', { text: 'Searching for keywords' });
+        req.socket.emit ('searchUpdate', { text: 'Searching for keywords', subText: '' });
 
         for (var i = 0; i < keywordsCount; i++) {
-            console.log ("On keyword:" + parameters.keywords[i].value);
-
             // API Call
             sails.redditAPI ('/search').listing ({
                 include_facets: true,
@@ -39,15 +39,19 @@ module.exports = {
                 }
                 counter++;
 
-                req.socket.emit('searchUpdate', { text: 'Found threads for ' + counter + ' keywords', subText: keywordsCount - counter + ' keywords remaining'});
+
+                var text = 'Found threads for ' + counter + ' keyword' + (counter === 1 ? '' : 's');
+                var subText = keywordsCount - counter + ' keyword' + (keywordsCount - counter === 1 ? '' : 's') + ' remaining';
+
+                req.socket.emit('searchUpdate', { text: text, subText: subText});
 
 
                 // If done
                 if (counter == keywordsCount) {
-                    console.log ("Search has finished");
-                    console.log ("Threads: " + threads.length);
-                    req.socket.emit ('searchUpdate', { text: 'Found ' + threads.length + ' threads' });
-                    digestService (req, threads, parameters);
+                    sails.log(req.ip + "| found " + threads.length + " threads");
+
+                    req.socket.emit ('searchUpdate', { text: 'Found ' + threads.length + ' thread' + (threads.length === 1 ? '' : 's'), subText: '' });
+                    callback (req, threads, parameters);
                 }
             });
         }

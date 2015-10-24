@@ -6,7 +6,7 @@ module.exports = {
 
     processThreads: function (req, apiThreads, parameters) {
 
-        console.log("Found " + apiThreads.length + " threads");
+
 
         // Sort threads by categories
         apiThreads = SorterService.sort (apiThreads);
