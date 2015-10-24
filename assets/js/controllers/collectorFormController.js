@@ -210,14 +210,14 @@ app.controller ('collectorFormController', ['$scope', '$state', '$sce', function
     // Categories
     $scope.categoriesCanContinue = function () {
         for (var cat in $scope.digest.categories) {
-            if ($scope.digest.categories[cat].enabled === true) {
+            if ($scope.digest.categories[cat].enabled) {
                 return true;
             }
         }
         return false;
     };
     $scope.categoriesContinue    = function () {
-        if ($scope.customFiltersCanContinue ()) {
+        if ($scope.categoriesCanContinue ()) {
             $state.go ('collector-form.markup');
         }
     };
