@@ -2,7 +2,11 @@ module.exports = {
   newLine: "&nbsp;  \n",
   space: "&nbsp;",
 
-  link: function (link, text, isNp) {
+  link: function (link, text) {
+    return '[' + text + '](' + link + ' )';
+  },
+
+  redditLink: function (link, text, isNp) {
 
     if(isNp != undefined && isNp) {
       link = "https://np.reddit.com" + link;

@@ -22,7 +22,7 @@ module.exports = {
             sails.redditAPI ('/search').listing ({
                 include_facets: true,
                 limit: ApiParamValidatorService.limit (parameters.searchParameters.resultsPerKeyword),
-                q: parameters.keywords[i].value,
+                q: parameters.keywords[i].value.toLowerCase(),
                 restrict_sr: false,
                 sort: ApiParamValidatorService.sort (parameters.searchParameters.sortMethod.value),
                 sr_detail: true,
